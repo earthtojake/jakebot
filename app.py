@@ -3,7 +3,7 @@ import requests
  
 app = Flask(__name__)
  
-ACCESS_TOKEN = "EAAP9MMaGh1cBAHS7jZCnuQgm2GWx5grLraIElFlWlIw2r3Afb34m2c2rP0xdkkkKEeiBOykGINAP0tScwmL5NNBJQN9ayPCuq13syvWocmbYZA7BXL86FsZCyZBxTmkgYYp8MDulLc1Tx70FGdU5ebQZAJV28nMkZD"
+ACCESS_TOKEN = "EAAF4fQe12XQBAOfF2ZBVTBy9TfrBJaKSl40H1Q0fYJfUZABOXiCYw2hmwEVMjGUXGSqzBQEOezNIe6t3GEv19izkD08dlgPIYcnavkIeZBFDfc15aShAMnCLBDgIpYC3e9ViYqLZAWexLaDqA9WPJxsSLXZBvFUwdplsUtlamoQZDZD"
  
 @app.route('/', methods=['GET'])
 def handle_verification():
