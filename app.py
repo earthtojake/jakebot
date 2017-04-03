@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requests
+import msg
 
 app = Flask(__name__)
 
@@ -25,7 +26,8 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
-    send_message(PAT, sender, message)
+    response = msg.respond(message)
+    send_message(sender, response)
   return "ok"
 
 def messaging_events(payload):
@@ -41,12 +43,12 @@ def messaging_events(payload):
       yield event["sender"]["id"], "I can't echo this"
 
 
-def send_message(token, recipient, text):
+def send_message(recipient, text):
   """Send the message text to recipient with id recipient.
   """
 
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
+    params={"access_token": PAT},
     data=json.dumps({
       "recipient": {"id": recipient},
       "message": {"text": text.decode('unicode_escape')}
