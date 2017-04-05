@@ -27,7 +27,7 @@ def hello():
                     bot.send_action(recipient_id,'typing_on')
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        bot.send_text_message(recipient_id, msg.respond(message))
+                        bot.send_text_message(recipient_id, msg.respond(recipient_id,message))
                     bot.send_action(recipient_id,'typing_off')
                 else:
                     pass
