@@ -24,10 +24,10 @@ def hello():
         for event in output['entry']:
             messaging = event['messaging']
             for x in messaging:
+                print x
                 if x.get('message'):
                     recipient_id = x['sender']['id']
                     bot.send_action(recipient_id,'typing_on')
-                    print x['message']
                     if x['message'].get('text'):
                         message = x['message']['text']
                         big_response = msg.respond(recipient_id,message)
