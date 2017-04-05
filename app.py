@@ -2,6 +2,7 @@ from flask import Flask, request
 import msg
 import time
 from pymessenger.bot import Bot
+import re
 
 app = Flask(__name__)
 
@@ -28,10 +29,29 @@ def hello():
                     bot.send_action(recipient_id,'typing_on')
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        big_response = msg.respond(recipient_id,message).split('|')
-                        time.sleep(0.25)
-                        for response in big_response:
-                          bot.send_text_message(recipient_id, response)
+                        if '[BTN]' in message:
+
+                          split = message.split('[BTN]')
+                          if len(split) == 2:
+                            pretext = split[0]
+                            message = split[1]
+
+                            button_txts = message.split('|')
+                            buttons = []
+                            for button_txt in buttons_txts:
+                              button = {
+                                "type":"postback",
+                                "title":button,
+                                "payload":""
+                              }
+                              buttons.append(button)
+
+                            bot.send_button_message(recipient_id, pretext, buttons)
+                        else:
+                          big_response = msg.respond(recipient_id,message).split('|')
+                          time.sleep(0.25)
+                          for response in big_response:
+                            bot.send_text_message(recipient_id, response)
                     bot.send_action(recipient_id,'typing_off')
                 else:
                     pass
