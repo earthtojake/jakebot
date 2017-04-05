@@ -17,17 +17,17 @@ ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
 
 def respond(message):
 
-    request = ai.text_request()
+	request = ai.text_request()
 
-    request.query = message
+	request.query = message
 
-    response = json.loads(request.getresponse().read())
+	response = json.loads(request.getresponse().read())
 
-    if response.get('status').get('code') != 200:
-    	print 'Error',response.get('status')
-    	return None
-    else:
-    	text = response.get('result').get('fulfillment').get('speech')
+	if response.get('status').get('code') != 200:
+		print 'Error',response.get('status')
+		return None
+	else:
+		text = response.get('result').get('fulfillment').get('speech')
 		return text
 
 def create_intent(iID,inputs,response,context=False):
