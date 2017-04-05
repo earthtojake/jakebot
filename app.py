@@ -38,7 +38,7 @@ def hello():
 
                             button_txts = message.split('|')
                             buttons = []
-                            for button_txt in buttons_txts:
+                            for button_txt in button_txts:
                               button = {
                                 "type":"postback",
                                 "title":button,
