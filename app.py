@@ -33,13 +33,13 @@ def hello():
                     if x['message'].get('text'):
                         send_response(recipient_id,x['message']['text'])
                     else:
-                        send_response(recipient_id,BROKEN_RESPONSE)
+                        bot.send_text_message(recipient_id,BROKEN_RESPONSE)
                 elif x.get('postback'):
                     index = x['postback']['payload'] # 1.1.2, 3.4, etc
                     bot.send_text_message(recipient_id,'You pressed a button... payload = '+str(index))
                     # get response via index from apiai
                 else:
-                    bot.send_text_message(recipient_id,"I couldn't read that, sorry :(")
+                    bot.send_text_message(recipient_id,BROKEN_RESPONSE)
                     pass
                 bot.send_action(recipient_id,'typing_off')
         return "Success"
