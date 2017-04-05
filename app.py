@@ -19,12 +19,12 @@ def hello():
 
     if request.method == 'POST':
         output = request.get_json()
-        bot.send_action(recipient_id,'typing_on')
         for event in output['entry']:
             messaging = event['messaging']
             for x in messaging:
                 if x.get('message'):
                     recipient_id = x['sender']['id']
+                    bot.send_action(recipient_id,'typing_on')
                     if x['message'].get('text'):
                         message = x['message']['text']
                         bot.send_text_message(recipient_id, msg.respond(message))
