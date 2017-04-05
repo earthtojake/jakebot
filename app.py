@@ -42,7 +42,7 @@ def hello():
                               button = {
                                 "type":"postback",
                                 "title":button_txt.strip(),
-                                "payload":""
+                                "payload":"payload goes here"
                               }
                               buttons.append(button)
                             print pretext, buttons
