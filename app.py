@@ -26,8 +26,7 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
-    send_message(sender, message)
-    break
+    send_message(PAT, sender, message)
   return "ok"
 
 def messaging_events(payload):
@@ -43,12 +42,12 @@ def messaging_events(payload):
       yield event["sender"]["id"], "I can't echo this"
 
 
-def send_message(recipient, text):
+def send_message(token, recipient, text):
   """Send the message text to recipient with id recipient.
   """
 
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": PAT},
+    params={"access_token": token},
     data=json.dumps({
       "recipient": {"id": recipient},
       "message": {"text": text.decode('unicode_escape')}
