@@ -16,3 +16,5 @@ mock
 gevent
 gunicorn
 requests
+apiai
+json
