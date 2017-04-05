@@ -59,10 +59,8 @@ uritemplate==3.0.0
 uritemplate.py==3.0.2
 urllib3==1.19.1
 virtualenv==15.1.0
-webhoseio==0.4
 websocket-client==0.40.0
 Werkzeug==0.11.11
-wit==4.2.0
 xlrd==1.0.0
 xlutils==2.0.0
 xlwt==1.1.2
