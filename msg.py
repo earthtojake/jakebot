@@ -15,9 +15,9 @@ hdr = {
 
 ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
 
-def respond(message):
+def respond(senderId,message):
 
-	request = ai.text_request()
+	request = ai.text_request(sessionId=senderId)
 
 	request.query = message
 
