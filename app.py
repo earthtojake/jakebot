@@ -1,5 +1,6 @@
 from flask import Flask, request
 import msg
+import time
 from pymessenger.bot import Bot
 
 app = Flask(__name__)
@@ -27,7 +28,10 @@ def hello():
                     bot.send_action(recipient_id,'typing_on')
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        bot.send_text_message(recipient_id, msg.respond(recipient_id,message))
+                        big_response = msg.respond(recipient_id,message).split('|')
+                        time.sleep(0.25)
+                        for response in big_response:
+                          bot.send_text_message(recipient_id, response)
                     bot.send_action(recipient_id,'typing_off')
                 else:
                     pass
