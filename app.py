@@ -47,6 +47,8 @@ def send_response_to(recipient_id,message):
   big_response = msg.respond(recipient_id,message)
 
   # send button options response
+  if not big_response:
+    pass
   if '[BTN]' in big_response:
     split = big_response.split('[BTN]')
     if len(split) == 2:
