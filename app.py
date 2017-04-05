@@ -11,7 +11,7 @@ app = Flask(__name__)
 PAT = 'EAAF4fQe12XQBALKJZAZAZC3Q1Kq56n1vuju5ZAngRciCFqlFVKT8EoHyFDKEy16UiZAaz78KUH31gEXDT6lfUbGT4oqP81GgYahUqRv0pmUtuwgmLlZBkSWf0cZA3e8B3WPmoQfJyHH3JG1MdPjeqnShKIZAbf8DeImhTPMCsxyX8QZDZD'
 bot = Bot(PAT)
 
-BROKEN_RESPONSE = "Oh no... I think you just broke me 😳 Sorry, there must be a bug in my code. I'll report this to real Jake right away! Message me again later! *bangs head*"
+BROKEN_RESPONSE = "Oh no... I think you just broke me 😳 Sorry, there must be a bug in my code. I'll report this to real Jake right away! Message me again later! *bangs head*".encode('unicode-escape')
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
@@ -31,7 +31,7 @@ def hello():
                 bot.send_action(recipient_id,'typing_on')
                 if x.get('message'):
                     if x['message'].get('text'):
-                        send_response(recipient_id,x['message']['text'])
+                        send_response_to(recipient_id,x['message']['text'])
                     else:
                         bot.send_text_message(recipient_id,BROKEN_RESPONSE)
                 elif x.get('postback'):
@@ -44,7 +44,7 @@ def hello():
                 bot.send_action(recipient_id,'typing_off')
         return "Success"
 
-def send_response(recipient_id,message):
+def send_response_to(recipient_id,message):
 
   big_response = msg.respond(recipient_id,message)
 
