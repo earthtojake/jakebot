@@ -41,7 +41,7 @@ def hello():
                             for button_txt in button_txts:
                               button = {
                                 "type":"postback",
-                                "title":button,
+                                "title":button_txt.strip(),
                                 "payload":""
                               }
                               buttons.append(button)
