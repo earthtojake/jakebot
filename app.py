@@ -30,6 +30,7 @@ def hello():
                     time.sleep(0.25)
                     if x['message'].get('text'):
                         message = x['message']['text']
+                        print message
                         big_response = msg.respond(recipient_id,message)
                         if '[BTN]' in big_response:
                           split = big_response.split('[BTN]')
