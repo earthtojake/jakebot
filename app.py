@@ -26,8 +26,7 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
-    response = msg.respond(message)
-    send_message(sender, response)
+    send_message(sender, message)
     break
   return "ok"
 
