@@ -12,7 +12,7 @@ bot = Bot(PAT)
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     if request.method == 'GET':
-        if request.args.get("hub.verify_token") == PAT:
+        if request.args.get("hub.verify_token") == 'my_voice_is_my_password_verify_me':
             return request.args.get("hub.challenge")
         else:
             return 'Invalid verification token'
