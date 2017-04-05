@@ -27,16 +27,17 @@ def hello():
                 if x.get('message'):
                     recipient_id = x['sender']['id']
                     bot.send_action(recipient_id,'typing_on')
+                    time.sleep(0.25)
                     if x['message'].get('text'):
                         message = x['message']['text']
-                        if '[BTN]' in message:
-
-                          split = message.split('[BTN]')
+                        big_response = msg.respond(recipient_id,message)
+                        if '[BTN]' in big_response:
+                          split = big_response.split('[BTN]')
                           if len(split) == 2:
                             pretext = split[0]
-                            message = split[1]
+                            response = split[1]
 
-                            button_txts = message.split('|')
+                            button_txts = response.split('|')
                             buttons = []
                             for button_txt in button_txts:
                               button = {
@@ -45,11 +46,9 @@ def hello():
                                 "payload":"payload goes here"
                               }
                               buttons.append(button)
-                            print bot.send_button_message(recipient_id, pretext, buttons)
+                            bot.send_button_message(recipient_id, pretext, buttons)
                         else:
-                          big_response = msg.respond(recipient_id,message).split('|')
-                          time.sleep(0.25)
-                          for response in big_response:
+                          for response in big_response.split('|'):
                             bot.send_text_message(recipient_id, response)
                     bot.send_action(recipient_id,'typing_off')
                 else:
