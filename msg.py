@@ -17,8 +17,9 @@ ai = apiai.ApiAI(CLIENT_ACCESS_TOKEN)
 
 def respond(senderId,message):
 
-	request = ai.text_request(sessionId=senderId)
+	request = ai.text_request()
 
+	request.session_id = senderId
 	request.query = message
 
 	response = json.loads(request.getresponse().read())
