@@ -27,21 +27,23 @@ def hello():
             messaging = event['messaging']
             for x in messaging:
                 print x
-                recipient_id = x['sender']['id']
-                bot.send_action(recipient_id,'typing_on')
+
                 if x.get('message'):
                     if x['message'].get('text'):
+                        recipient_id = x['sender']['id']
                         send_response_to(recipient_id,x['message']['text'])
-                elif x.get('postback'):
-                    index = x['postback']['payload'] # 1.1.2, 3.4, etc
-                    bot.send_text_message(recipient_id,'You pressed a button... payload = '+str(index))
-                    # get response via index from apiai
+                # elif x.get('postback'):
+                #     index = x['postback']['payload'] # 1.1.2, 3.4, etc
+                #     bot.send_text_message(recipient_id,'You pressed a button... payload = '+str(index))
+                #     # get response via index from apiai
                 else:
                     pass
-                bot.send_action(recipient_id,'typing_off')
+                
         return "Success"
 
 def send_response_to(recipient_id,message):
+
+  bot.send_action(recipient_id,'typing_on')
 
   big_response = msg.respond(recipient_id,message)
 
@@ -64,14 +66,14 @@ def send_response_to(recipient_id,message):
 
       time.sleep(0.25)
       bot.send_button_message(recipient_id, pretext, buttons)
-    else:
-      bot.send_text_message(recipient_id,BROKEN_RESPONSE)
 
   # send text response
   else:
     for response in big_response.split('|'):
       time.sleep(0.25)
       bot.send_text_message(recipient_id, response)
+
+  bot.send_action(recipient_id,'typing_off')
 
 if __name__ == '__main__':
   app.run()
