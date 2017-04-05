@@ -45,8 +45,7 @@ def hello():
                                 "payload":"payload goes here"
                               }
                               buttons.append(button)
-                            print pretext, buttons
-                            bot.send_button_message(recipient_id, pretext, buttons)
+                            print bot.send_button_message(recipient_id, pretext, buttons)
                         else:
                           big_response = msg.respond(recipient_id,message).split('|')
                           time.sleep(0.25)
