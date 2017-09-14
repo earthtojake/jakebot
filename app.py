@@ -31,10 +31,10 @@ def hello():
                     if x['message'].get('text'):
                         recipient_id = x['sender']['id']
                         send_response_to(recipient_id,x['message']['text'])
-                # elif x.get('postback'):
-                #     index = x['postback']['payload'] # 1.1.2, 3.4, etc
-                #     bot.send_text_message(recipient_id,'You pressed a button... payload = '+str(index))
-                #     # get response via index from apiai
+                elif x.get('postback'):
+                    index = x['postback']['payload'] # 1.1.2, 3.4, etc
+                    bot.send_text_message(recipient_id,'You pressed a button... payload = '+str(index))
+                    # get response via index from apiai
                 else:
                     pass
                 

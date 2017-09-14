@@ -31,7 +31,7 @@ def respond(senderId,message):
 		text = response.get('result').get('fulfillment').get('speech')
 		return text
 
-def create_intent(iID,inputs,response,context=False):
+def create_intent(iID,inputs,response):
 
 	userSays = []
 	if type(inputs) is not list: inputs = [inputs]
