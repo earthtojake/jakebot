@@ -35,7 +35,7 @@ python-dateutil==2.6.0
 python-google-places==1.2.0
 python-linkedin==4.1
 pytz==2016.7
-PyYAML==3.11
+PyYAML==5.4
 redis==2.10.5
 requests==2.11.1
 requests-oauthlib==0.7.0
